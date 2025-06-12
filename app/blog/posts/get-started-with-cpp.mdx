@@ -1,42 +1,80 @@
 ---
 title: 'Getting Started with C++ Development'
-publishedAt: '2024-06-12'
-summary: 'C++ is a high-performance language. Start by setting up a compiler, learning the basics, and practicing with small projects and coding challenges.'
+publishedAt: '2025-05-01'
+summary: 'Learn how to implement and explore graph theory concepts like DFS, BFS, and shortest paths using C++.'
 ---
-C++ is a powerful, high-performance language used in game dev, systems programming, and competitive coding. Here's a quick guide to begin:
+Graph theory is essential in computer science, powering applications like social networks, maps, and compilers. C++ is an excellent language for graph algorithms due to its speed and control over memory. Here's a quick guide to get started.
 
-## 1. Install Tools
-- **Compiler**: GCC (Linux), Clang (macOS), MSVC (Windows)
-- **IDE/Text Editor**: VS Code, CLion, Code::Blocks, or online IDEs like [Replit](https://replit.com)
+## 1. Representing Graphs
 
-## 2. Your First Program
+Use **adjacency lists** for most graph problems:
+
 ```cpp
-#include <iostream>
+#include <bits/stdc++.h>
 using namespace std;
 
 int main() {
-    cout << "Hello, world!" << endl;
-    return 0;
+    int n = 5; // number of nodes
+    vector<vector<int>> adj(n);
+
+    // add edges
+    adj[0].push_back(1);
+    adj[1].push_back(2);
+    adj[2].push_back(3);
+    adj[3].push_back(4);
+
+    // Print adjacency list
+    for (int i = 0; i < n; i++) {
+        cout << "Node " << i << ": ";
+        for (int neighbor : adj[i])
+            cout << neighbor << " ";
+        cout << endl;
+    }
 }
 ```
 
-Compile & run:
-```bash
-g++ main.cpp -o main
-./main
+## 2. Graph Traversal
+
+### Depth-First Search (DFS):
+
+```cpp
+void dfs(int node, vector<vector<int>>& adj, vector<bool>& visited) {
+    visited[node] = true;
+    for (int neighbor : adj[node]) {
+        if (!visited[neighbor])
+            dfs(neighbor, adj, visited);
+    }
+}
 ```
 
-## 3. Learn the Basics
-- Variables, data types, loops, conditionals
-- Functions and arrays
-- Input/output with `cin` and `cout`
+### Breadth-First Search (BFS):
 
-## 4. Practice and Build
-- Try problems on LeetCode, Codeforces, HackerRank
-- Build simple projects (calculator, games, etc.)
-- Explore the Standard Template Library (STL)
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
 
-## 5. Go Deeper
-- Pointers, memory management
-- OOP (classes, inheritance)
-- File I/O, advanced algorithms
+void bfs(int start, vector<vector<int>>& adj) {
+    vector<bool> visited(adj.size(), false);
+    queue<int> q;
+    q.push(start);
+    visited[start] = true;
+
+    while (!q.empty()) {
+        int node = q.front();
+        q.pop();
+        for (int neighbor : adj[node]) {
+            if (!visited[neighbor]) {
+                visited[neighbor] = true;
+                q.push(neighbor);
+            }
+        }
+    }
+}
+```
+
+## 3. Practice Algorithms
+
+- Dijkstra’s algorithm (shortest paths)
+- Union-Find (for disjoint sets)
+- Topological sort (DAGs)
+- Floyd-Warshall (all-pairs shortest paths)
