@@ -1,0 +1,55 @@
+---
+title: 'Using Breadboard Computing for Analytical Irrigation'
+publishedAt: '2025-06-21'
+summary: 'Learn how a custom-built smart garden system - powered by a Raspberry Pi Pico, sensors, and MicroPython - automates plant care and improves water efficiency with adaptive, AI-informed logic.'
+---
+
+Most automated irrigation systems simply rely on a timer. Mine doesn't.
+
+The **GreenPi** is my solution to the persistent challenge of efficient irrigation and consistent plant care. Instead of waiting for a preset time and dumping water regardless of conditions, GreenPi monitors the soil and surrounding environment in real time. It considers factors like soil moisture, sunlight, temperature, humidity, and the forecasted chance of rain. Best of all - it tailors the watering amount based on the specific type of plant it's supporting.
+
+## How does it work?
+
+Right now, GreenPi uses a baseline watering value - the maximum amount of water a plant would need under extreme heat and drought. From there, it intelligently scales the actual amount delivered using current environmental inputs. The drier and hotter it is, the closer it gets to the baseline. If it's cloudy and damp or rain is on the way, it uses much less.
+
+This adjustment is powered by a lightweight AI algorithm - essentially a decision function that models plant behavior under changing conditions. The logic is simple, tunable, and offline-first. No cloud. No remote servers. Just a small brain on a breadboard making smart choices.
+
+## Built from the ground up
+
+GreenPi runs on a Raspberry Pi Pico, reading from several sensors:
+
+- A capacitive soil moisture probe
+- A photoresistor to measure ambient light
+- A DHT11 for temperature and humidity
+- Weather forecast data fetched and relayed over serial by a Raspberry Pi Zero
+
+Water is delivered through a small peristaltic pump, activated via a relay. A 16x2 LCD and 4x4 keypad allow for direct configuration - you can change timing, thresholds, and maximum watering duration right on the device. All preferences are saved to flash and persist between restarts.
+
+## The brains of the system
+
+Every few seconds, the Pico pulls in the latest data. It checks:
+
+- Is the soil too dry?
+- Is it daytime?
+- Will it rain soon?
+
+If it's time to water, it calculates how much based on current conditions and the plant profile. For example, a cactus gets a very different response than a tomato plant.
+
+This AI-like scaling behavior means water is only used when truly needed - and only as much as the plant can absorb and use efficiently.
+
+## Smarter, not harder
+
+This system isn't just smart - it's practical. It's frugal with water. It works offline. It adapts to the needs of each plant. And it's all driven by simple, open hardware you can tinker with.
+
+Future improvements will focus on:
+
+- Logging and analyzing moisture trends
+- Expanding the AI model with plant growth stage tracking
+- Auto-detecting plant types using RFID or barcode scanning
+- A companion app for monitoring and adjustments
+
+## Final thoughts
+
+The GreenPi was built from scratch, on a breadboard, with everyday components. But it does something most store-bought systems don't - it adapts. It thinks. It uses just enough water, guided by live data and a model of how plants behave. In a world that needs smarter resource use, this kind of embedded intelligence goes a long way.
+
+And the best part? Anyone can build it.
