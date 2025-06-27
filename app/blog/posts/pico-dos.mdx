@@ -4,22 +4,17 @@ publishedAt: '2025-06-27'
 summary: 'The Raspberry Pi Pico is a well-known and powerful microcontroller, but can it run a whole operating system? Enter PicoDOS.'
 ---
 
-# An Operating System on a $4 Microcontroller?
-
 The Raspberry Pi Pico isn't supposed to run an operating system. At least, not in the way we usually think about it.
 
 The Pico is a $4 microcontroller with 264KB of RAM, 2MB of flash storage, no built-in display, no multitasking (well, sort of), and certainly no user login screen. It was made for blinking LEDs, reading sensors, and handling simple automation tasks. But ever since I got my hands on one, I kept asking myself the same question:
 
 **What if it could do more?**
 
-What if it could boot into a UI?  
-What if it had a shell?  
-What if it had a file system, apps, even scripting?  
-What if it could feel like an operating system?
+What if it could boot into a UI? What if it had a shell? What if it had a file system, apps, even scripting?  
 
-That's how **PicoDOS** began.
+What if it could feel like an **operating system**?
 
----
+That's how [PicoDOS](https://github.com/cybergeist0/picoDOS) began.
 
 ## "But Is It Really an Operating System?"
 
@@ -29,15 +24,13 @@ If you're an avid and hardcore computer scientist, you might roll your eyes.
 > "You didn't even write the filesystem!"  
 > "There's no memory protection or user space!"
 
-And technically, you'd be right. PicoDOS doesn't try to be Linux; it's single-tasking. It doesn't abstract the hardware from user code. There's no virtual memory or user accounts. But that's not the point.
+And technically, you'd be right. PicoDOS doesn't try to be Linux; it's single-tasking. There's no virtual memory or user accounts. There's not even a real-time clock. But that's not the point.
 
-**PicoDOS is an OS in the embedded sense of the word** - a complete, standalone software layer that boots the system, manages files, handles user input, runs applications, and presents a graphical interface. It replaces bare-metal code with a structured, extensible environment.
+PicoDOS is an OS in the **embedded** sense of the word - a complete, standalone software layer that boots the system, manages files, handles user input, runs applications, and presents a graphical interface. It replaces bare-metal code with a structured, extensible environment.
 
 You don't need to upload new firmware every time you want to try something new. You don't need to reset the board to change a setting. You can power it on and interact with it like a real, functioning computer.
 
 Isn't that what an operating system is supposed to do?
-
----
 
 ## What PicoDOS Actually Does
 
@@ -48,25 +41,16 @@ When you boot PicoDOS on the Pico, it:
 - Lets you explore files, run scripts, and edit text
 - Provides a shell for command-line interaction
 - Accepts input from buttons, a joystick, and a keypad
-- Stores configuration settings that survive reboots
 
 You can write `.psh` scripts (short for Pico#, my own programming language) and execute them directly on the device. You can create and browse directories, modify system variables, and even build new apps inside the OS using MicroPython - all without ever flashing new firmware.
 
 And yes, all of that fits within 2MB of onboard flash.
 
----
-
 ## Why It Matters
 
-PicoDOS isn't just a programming project - I prefer to think of it more as a statement.
-
-It says that even on the most constrained hardware, we can rethink what computing looks like. It challenges the idea that an operating system needs to be bloated or abstracted or enterprise-ready.
-
-Its educational aspect was by far the most rewarding. Writing my own shell parser taught me more about interpreters and the CLI than any textbook. Designing a GUI from scratch forced me to care about every pixel.
+PicoDOS isn't just a programming project - I prefer to think of it more as a statement. It says that even on the most constrained hardware, we can rethink what computing looks like. It challenges the idea that an operating system needs to be bloated or abstracted or enterprise-ready. Its educational aspect was by far the most rewarding. Writing my own shell parser taught me more about interpreters and the CLI than any textbook. Designing a GUI from scratch forced me to care about every pixel.
 
 In a world where most software is built on top of layers and layers of libraries and frameworks, PicoDOS strips everything back to the metal and builds something classical from the ground up.
-
----
 
 ## So, Can a $4 Microcontroller Run an OS?
 
@@ -80,6 +64,3 @@ It's proof that an operating system isn't defined by complexity - it's defined b
 
 So yes, it runs on a $4 board. Yes, it's written in MicroPython. And yes, it's absolutely real.
 
----
-
-*In future posts, I'll be breaking down how PicoDOS handles file I/O, how the shell works, and how the GUI draws icons pixel-by-pixel. If you've ever wanted to build an OS from scratch, follow along.*
