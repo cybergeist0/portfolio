@@ -7,7 +7,7 @@ const navItems = {
   '/blog': {
     name: 'blog',
   },
-  '#': {
+  'https://docs.google.com/document/d/1ocvON3JJqkm-xuEXB0aNVgJ8xoSFGcByEHCN_Aj25gs/edit?usp=sharing': {
     name: 'resume',
   },
 }
